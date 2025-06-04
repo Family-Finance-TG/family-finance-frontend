@@ -1,0 +1,86 @@
+/* Container geral com Sidebar */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f4f7f9;
+  font-family: "Arial", sans-serif;
+}
+
+/* Conteúdo principal ao lado da Sidebar */
+.dashboard-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Container do formulário de criação de família */
+.create-family-container {
+  background-color: #fff;
+  padding: 36px 32px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Título */
+.create-family-container h2 {
+  font-size: 22px;
+  color: #00695c;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* Formulário */
+.create-family-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.create-family-form input {
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.create-family-form input:focus {
+  border-color: #008b7e;
+}
+
+.create-family-form button {
+  background-color: #008b7e;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-family-form button:hover {
+  background-color: #00695c;
+}
+
+/* Mensagens */
+.error-message {
+  color: #d32f2f;
+  font-size: 14px;
+  text-align: center;
+}
+
+.success-message {
+  color: #2e7d32;
+  font-size: 14px;
+  text-align: center;
+}

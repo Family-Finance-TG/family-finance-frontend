@@ -1,0 +1,153 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: "Arial", sans-serif;
+  background-color: #f4f7f9;
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 32px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  
+}
+
+.analytics-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #00695c;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 6%; /* ✅ desce ligeiramente o texto */
+}
+
+.filter-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  padding-top: 5%;
+}
+
+.filter-select select {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.analytics-layout {
+  flex-grow: 1;
+  display: grid;
+  grid-template-areas:
+    "box1 box2 box3"
+    "chart1 chart2 chart2"
+    "chart3 chart4 chart4";
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.analytics-box-1 { grid-area: box1; }
+.analytics-box-2 { grid-area: box2; }
+.analytics-box-3 { grid-area: box3; }
+.analytics-chart-1 { grid-area: chart1; }
+.analytics-chart-2 { grid-area: chart2; }
+.analytics-chart-3 { grid-area: chart3; }
+.analytics-chart-4 { grid-area: chart4; }
+
+.chart-panel {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: visible; 
+  
+}
+
+
+.chart-panel h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #00695c;
+}
+
+.stat-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.stat-card h3 {
+  font-size: 24px;
+  color: #222;
+  margin-top: 6px;
+}
+
+@media (max-width: 1000px) {
+  .analytics-layout {
+    grid-template-areas:
+      "box1"
+      "box2"
+      "box3"
+      "chart1"
+      "chart2"
+      "chart3"
+      "chart4";
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .filter-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    background: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    height: 40px;
+  }
+
+  .filter-select label {
+    font-weight: 500;
+    color: #00695c;
+  }
+  
+  .filter-select select {
+    border: none;
+    font-size: 14px;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+  }
+}

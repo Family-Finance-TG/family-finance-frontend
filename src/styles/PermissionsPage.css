@@ -1,0 +1,121 @@
+.dashboard-content {
+  padding: 2rem;
+  background-color: #f8fbfd;
+  min-height: 100vh;
+}
+
+.dashboard-content h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.permissions-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  background: #fff;
+}
+
+.permissions-table thead {
+  background-color: #f0f4f8;
+}
+
+.permissions-table th,
+.permissions-table td {
+  padding: 14px 18px;
+  text-align: center;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #eef1f4;
+}
+
+.permissions-table tbody tr:nth-child(even) {
+  background-color: #f9fbfc;
+}
+
+.permissions-table tbody tr:hover {
+  background-color: #eef6fb;
+  transition: background 0.2s ease-in-out;
+}
+
+.permissions-table td:first-child {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Destaque para criador */
+.creator-row {
+  background-color: #dff6dd !important;
+  font-weight: bold;
+}
+
+/* Switch toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 22px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Força switches desativados do criador a parecerem ativos */
+input[type="checkbox"]:disabled:checked + .slider {
+  background-color: #4cd964 !important;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+input[type="checkbox"]:disabled:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+
+input:checked + .slider {
+  background-color: #4cd964;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+input:disabled + .slider {
+  background-color: #a2a2a2;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2rem;
+}

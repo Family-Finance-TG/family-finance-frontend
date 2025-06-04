@@ -1,0 +1,249 @@
+.invite-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.invite-scroll-wrapper {
+  max-height: calc(100vh - 300px); /* altura máxima visível */
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* Garante que a barra de rolagem seja bonita */
+.invite-scroll-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.invite-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 6px;
+}
+
+
+.invite-manager-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
+  padding: 40px;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.invite-manager-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #00695c;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.invite-form {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.invite-form input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  min-width: 250px;
+}
+
+.invite-form input:focus {
+  border-color: #008b7e;
+  outline: none;
+}
+
+.invite-form button {
+  padding: 12px 24px;
+  background-color: #008b7e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.invite-form button:hover {
+  background-color: #00695c;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: -10px;
+}
+
+.invite-manager-container h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.invite-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.invite-item {
+  background-color: #f8f9fa;
+  padding: 16px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 5px solid #008b7e;
+  flex-wrap: wrap;
+}
+
+.invite-item div {
+  display: b;
+  font-size: 15px;
+  color: #333;
+  
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cancel-btn:hover {
+  color: #a71d2a;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: capitalize;
+  width: fit-content;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.accepted {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status.canceled {
+  background-color: #e2e3e5;
+  color: #6c757d;
+}
+
+.no-invites,
+.loading-message {
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* Botões ações */
+.invite-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.accept-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.accept-btn:hover {
+  background-color: #218838;
+}
+
+.reject-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.reject-btn:hover {
+  background-color: #c82333;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .invite-form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .invite-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .cancel-btn {
+    align-self: flex-end;
+  }
+
+  .invite-manager-container {
+    padding: 30px 20px;
+  }
+
+  .invite-page-wrapper {
+    padding: 20px;
+  }
+
+  .invite-actions {
+    align-self: stretch;
+    flex-wrap: wrap;
+  }
+}
