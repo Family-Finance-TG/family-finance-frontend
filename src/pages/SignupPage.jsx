@@ -9,19 +9,15 @@ import '../styles/Login.css';
 
 const cleanCPF = (cpf) => cpf.replace(/\D/g, '');
 const SignupPage = () => {
-  const [step, setStep] = useState(1); // Etapa atual do cadastro
+  const [step, setStep] = useState(1); 
   const navigate = useNavigate();
 
-  // Estado para a primeira etapa
   const [accessName, setAccessName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // Estado para a segunda etapa
-  const [name, setName] = useState(''); // Movido para a segunda etapa
+  const [name, setName] = useState(''); 
   const [dateBirth, setDateBirth] = useState('');
-  const [salary, setSalary] = useState('');
-  const [percentageSalary, setPercentageSalary] = useState('');
   const [cpf, setCpf] = useState('');
   const [gender, setGender] = useState('');
   const [genders, setGenders] = useState([]);
@@ -35,36 +31,46 @@ const SignupPage = () => {
         const data = await getGenders();
         setGenders(data);
       } catch (error) {
-        console.error('Erro ao buscar gêneros:', error);
         setError('Erro ao carregar gêneros. Tente novamente.');
       }
     };
     fetchGenders();
   }, []);
 
-  // Função para converter a data para LocalDateTime esperado pelo backend
   const formatDateTime = (date) => {
-    return `${date}T00:00:00`; // Adiciona a hora para compatibilidade com LocalDateTime
+    return `${date}T00:00:00`; 
   };
 
   // Validação antes de avançar
   const validateStep1 = () => {
-    if (!accessName || !password || !confirmPassword) {
-      setError('Preencha todos os campos.');
-      return false;
-    }
-    if (password !== confirmPassword) {
-      setError('As senhas não coincidem.');
-      return false;
-    }
-    return true;
-  };
+  if (!accessName || !password || !confirmPassword) {
+    setError('Preencha todos os campos.');
+    return false;
+  }
+
+  if (password !== confirmPassword) {
+    setError('As senhas não coincidem.');
+    return false;
+  }
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+
+  if (!passwordRegex.test(password)) {
+    setError(
+      'A senha deve ter no mínimo 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais.'
+    );
+    return false;
+  }
+
+  return true;
+};
+
 
   const formatCPF = (value) => {
-    let cpf = value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    let cpf = value.replace(/\D/g, ''); 
     cpf = cpf.slice(0, 11); // Limita a 11 caracteres
-  
-    // Aplica a formatação: 000.000.000-00
+
     if (cpf.length <= 3) {
       return cpf;
     } else if (cpf.length <= 6) {
@@ -92,30 +98,27 @@ const SignupPage = () => {
     e.preventDefault();
     setError('');
 
-    if (!name || !dateBirth || !salary || !percentageSalary || !cpf || !gender) {
+    if (!name || !dateBirth || !cpf || !gender) {
       setError('Preencha todos os campos.');
       return;
     }
 
     setLoading(true);
     try {
-      const selectedGender = genders.find((g) => g.value === gender); // Garante value e friendlyName
+      const selectedGender = genders.find((g) => g.value === gender); 
 
       const userData = {
-        name, // Movido para a segunda etapa
+        name, 
         accessName,
         password,
-        dateBirth: formatDateTime(dateBirth), // Formata a data corretamente
-        salary: parseFloat(salary),
-        percentageSalary: parseFloat(percentageSalary),
+        dateBirth: formatDateTime(dateBirth), 
         cpf: cleanCPF(cpf),
-        gender: selectedGender, // Inclui value e friendlyName corretamente
+        gender: selectedGender, 
       };
 
       await signup(userData);
       navigate('/login');
     } catch (error) {
-      console.error('Erro no cadastro:', error);
       setError('Erro ao cadastrar. Tente novamente.');
     } finally {
       setLoading(false);
@@ -173,22 +176,6 @@ const SignupPage = () => {
               type="date"
               value={dateBirth}
               onChange={(e) => setDateBirth(e.target.value)}
-              required
-            />
-            <InputField
-              label="Salário"
-              type="number"
-              value={salary}
-              onChange={(e) => setSalary(e.target.value)}
-              placeholder="Digite seu salário"
-              required
-            />
-            <InputField
-              label="Percentual de Salário"
-              type="number"
-              value={percentageSalary}
-              onChange={(e) => setPercentageSalary(e.target.value)}
-              placeholder="Digite o percentual do salário"
               required
             />
             <InputField

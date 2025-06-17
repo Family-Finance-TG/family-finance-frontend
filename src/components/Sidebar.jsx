@@ -32,7 +32,6 @@ const Sidebar = () => {
         const userData = await getUserById(userId);
         setUser(userData);
       } catch (error) {
-        console.error("❌ Erro ao buscar usuário:", error);
       }
     };
     fetchUser();
@@ -41,7 +40,7 @@ const Sidebar = () => {
   const handleLeaveConfirmed = async () => {
     try {
       await leaveFamily(user.id);
-      setConfirmLeave(false); // Esconde a confirmação antes da animação
+      setConfirmLeave(false); 
       setShowSuccess(true);
       setTimeout(() => {
         window.location.reload();

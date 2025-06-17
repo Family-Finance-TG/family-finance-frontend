@@ -42,8 +42,6 @@ const Profile = () => {
         ...user,
         cpf: formatCPF(user.cpf),
         gender: user.gender?.value || "",
-        salary: user.salary?.toString() || "",
-        percentageSalary: user.percentageSalary?.toString() || "",
       });
 
       setLoading(false);
@@ -59,8 +57,6 @@ const Profile = () => {
   const handleSubmit = async () => {
     const updatedForm = { ...form };
     updatedForm.cpf = cleanCPF(updatedForm.cpf);
-    updatedForm.salary = parseFloat(updatedForm.salary.replace(",", ".")) || 0;
-    updatedForm.percentageSalary = parseFloat(updatedForm.percentageSalary) || 0;
     const selectedGender = genders.find((g) => g.value === form.gender);
     updatedForm.gender = selectedGender || null;
 
@@ -70,7 +66,6 @@ const Profile = () => {
       toast.success("Perfil atualizado com sucesso!");
       setTimeout(() => window.location.reload(), 1500);
     } catch (err) {
-      console.error(err);
       toast.error("Erro ao atualizar perfil.");
     }
   };
@@ -115,13 +110,6 @@ const Profile = () => {
               </option>
             ))}
           </select>
-
-          <label>Salário (R$):</label>
-          <input name="salary" type="text" value={form.salary || ""} onChange={handleChange} />
-
-          <label>% do Salário:</label>
-          <input name="percentageSalary" type="text" value={form.percentageSalary || ""} onChange={handleChange} />
-
           <div className="button-group">
             <button className="primary-btn" onClick={handleSubmit}>Salvar Alterações</button>
             <button className="secondary-btn" onClick={() => setConfirmDelete(true)}>Excluir Conta</button>
