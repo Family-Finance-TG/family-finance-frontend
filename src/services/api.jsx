@@ -25,8 +25,6 @@ api.interceptors.request.use((config) => {
 // ✅ Função para login
 export const login = async (credentials) => {
   try {
-    console.log("TESTE")
-    console.log("Endereço:", API_BASE_URL)
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     delete api.defaults.headers.common["Authorization"];
