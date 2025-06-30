@@ -10,6 +10,7 @@ import "../styles/FamilyPage.css";
 const FamilyMembersPage = () => {
   const [members, setMembers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [creatorId, setCreatorId] = useState(null);
 
   useEffect(() => {
     async function loadData() {
@@ -22,9 +23,10 @@ const FamilyMembersPage = () => {
       if (!user?.familyId) return;
 
       try {
-        const familyMembers = await getFamilyWithMembers(user.familyId);
-        const ativos = (familyMembers?.members || []).filter((m) => m.active);
+        const family = await getFamilyWithMembers(user.familyId);
+        const ativos = (family?.members || []).filter((m) => m.active);
         setMembers(ativos);
+        setCreatorId(family.creatorId);
       } catch (err) {
         console.error("Erro ao buscar membros da família:", err);
       }
@@ -63,19 +65,21 @@ const FamilyMembersPage = () => {
                 {hasRemovePermission && <th className="actions-cell">Ações</th>}
               </tr>
             </thead>
-            <tbody>
-              {members.map((m) => (
-                <tr key={m.id}>
-                  <td>{m.name}</td>
-                  {hasRemovePermission && (
-                    <td className="actions-cell">
-                      <button className="remove-btn" onClick={() => handleRemove(m.id)}>
-                        Remover
-                      </button>
-                    </td>
-                  )}
-                </tr>
-              ))}
+             <tbody>
+                    {members.map((m) => (
+                      <tr key={m.id}>
+                        <td>{m.name}</td>
+                        {hasRemovePermission && (
+                      <td className="actions-cell">
+                        {m.id !== creatorId && (
+                          <button className="remove-btn" onClick={() => handleRemove(m.id)}>
+                            Remover
+                          </button>
+                        )}
+                      </td>
+                    )}
+                  </tr>
+                ))}
             </tbody>
           </table>
         )}

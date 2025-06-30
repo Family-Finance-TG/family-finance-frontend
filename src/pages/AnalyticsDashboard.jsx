@@ -141,7 +141,7 @@ const AnalyticsDashboard = () => {
               <BarChart data={barByResponsible}>
                 <XAxis dataKey="name" stroke="#ccc" />
                 <YAxis stroke="#ccc" />
-                <Tooltip />
+                <Tooltip formatter={(value) => value.toFixed(2)} />
                 <Legend />
                 <Bar dataKey="total" fill="#00bfa5" />
               </BarChart>
@@ -154,7 +154,7 @@ const AnalyticsDashboard = () => {
               <LineChart data={lineByDay}>
                 <XAxis dataKey="day" stroke="#ccc" />
                 <YAxis stroke="#ccc" />
-                <Tooltip />
+                <Tooltip formatter={(value) => value.toFixed(2)} />
                 <Legend />
                 <Line type="monotone" dataKey="total" stroke="#4dd0e1" strokeWidth={2} />
               </LineChart>
@@ -167,7 +167,7 @@ const AnalyticsDashboard = () => {
               <BarChart data={barByTitle}>
                 <XAxis dataKey="name" stroke="#ccc" />
                 <YAxis stroke="#ccc" />
-                <Tooltip />
+                <Tooltip formatter={(value) => value.toFixed(2)} />
                 <Legend />
                 <Bar dataKey="total" fill="#ffc107" />
               </BarChart>

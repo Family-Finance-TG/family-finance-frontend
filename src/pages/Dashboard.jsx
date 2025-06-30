@@ -193,9 +193,12 @@ const Dashboard = () => {
                 value={selectedYear}
                 onChange={(e) => setSelectedYear(parseInt(e.target.value, 10))}
               >
-                {Array.from({ length: new Date().getFullYear() - 2019 }, (_, i) => (
-                  <option key={2020 + i} value={2020 + i}>{2020 + i}</option>
-                ))}
+                {Array.from({ length: (new Date().getFullYear() + 5) - 2020 + 1 }, (_, i) => {
+                  const year = 2020 + i;
+                  return (
+                    <option key={year} value={year}>{year}</option>
+                  );
+                })}
               </select>
 
               <div className="month-selector">

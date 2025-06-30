@@ -38,17 +38,18 @@ const Sidebar = () => {
   }, []);
 
   const handleLeaveConfirmed = async () => {
-    try {
-      await leaveFamily(user.id);
-      setConfirmLeave(false); 
-      setShowSuccess(true);
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
-    } catch (error) {
-      alert("Erro ao sair da família.");
-    }
-  };
+  try {
+    await leaveFamily(user.id);
+    setConfirmLeave(false); 
+    setShowSuccess(true);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+  } catch (error) {
+    const message = error?.response?.data?.message || "Erro ao sair da família.";
+    alert(message); 
+  }
+};
   
 
   return (
@@ -126,8 +127,14 @@ const Sidebar = () => {
           <FaUserShield /> Permissões
         </li>
         <li
-          className={location.pathname === "/family-members" ? "active" : ""}
-          onClick={() => navigate("/family-members")}
+          className={`${!user?.familyId ? "disabled" : ""} ${location.pathname === "/family-members" ? "active" : ""}`}
+          onClick={() => {
+            if (!user?.familyId) {
+              alert("Você não está vinculado a uma família.");
+              return;
+            }
+            navigate("/family-members");
+          }}
         >
           <FaUsers /> Família
         </li>

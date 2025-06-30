@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   updateFamilyDebt,
   getFamilyWithMembers,
@@ -70,14 +70,19 @@ const DebtDetailsModal = ({ debt, familyId, onClose, onUpdate }) => {
       setIsDeleted(true);
       setTimeout(() => {
         setIsDeleted(false);
-        onUpdate();
-        onClose();
+        window.location.reload();
       }, 1500);
     } catch (err) {
       alert("Erro ao excluir dívida.");
     }
   };
 
+  const formatLocalDate = (dateStr) => {
+    const date = new Date(dateStr);
+    const timezoneOffset = date.getTimezoneOffset() * 60000;
+    return new Date(date.getTime() + timezoneOffset).toLocaleDateString();
+  };
+  
   if (!debt) return null;
 
   return (
@@ -128,7 +133,7 @@ const DebtDetailsModal = ({ debt, familyId, onClose, onUpdate }) => {
             <div className="details-display">
               <p><strong>Título:</strong> {title}</p>
               <p><strong>Valor:</strong> R$ {Number(value).toFixed(2)}</p>
-              <p><strong>Vencimento:</strong> {new Date(dueDate).toLocaleDateString()}</p>
+              <p><strong>Vencimento:</strong> {formatLocalDate(dueDate)}</p>
               <p><strong>Responsável:</strong> {debt.responsible?.name || "N/A"}</p>
               <p><strong>Observações:</strong> {description?.trim() || "Nenhuma observação registrada."}</p>
             </div>
@@ -150,7 +155,10 @@ const DebtDetailsModal = ({ debt, familyId, onClose, onUpdate }) => {
               )}
 
               {user?.permissions?.includes("DEBT_DELETE") ? (
-                <button className="btn danger" onClick={() => setShowConfirmDelete(true)}>🗑️ Excluir</button>
+                <button className="btn danger" onClick={() => {
+                  setIsEditing(false);
+                  setShowConfirmDelete(true);
+                }}>🗑️ Excluir</button>
               ) : (
                 <button className="btn danger btn-disabled" disabled>🗑️ Excluir</button>
               )}
