@@ -142,25 +142,25 @@ const Dashboard = () => {
               <h3 className="family-name">Família: {family?.name || "Desconhecida"}</h3>
               <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
                 <button
-                  className={`launch-debt-btn ${!user?.permissions?.includes("CAN_ADD") ? "disabled-btn" : ""}`}
+                  className={`launch-debt-btn ${!user?.permissions?.includes("DEBT_ADD") ? "disabled-btn" : ""}`}
                   onClick={() => {
-                    if (user?.permissions?.includes("CAN_ADD")) {
+                    if (user?.permissions?.includes("DEBT_ADD")) {
                       setIsAccountsModalOpen(true);
                     }
                   }}
-                  disabled={!user?.permissions?.includes("CAN_ADD")}
+                  disabled={!user?.permissions?.includes("DEBT_ADD")}
                 >
                   <FaArrowUp /> Nova Despesa
                 </button>
 
                 <button
-                  className={`launch-debt-btn ${!user?.permissions?.includes("CAN_ADD") ? "disabled-btn" : ""}`}
+                  className={`launch-debt-btn ${!user?.permissions?.includes("DEBT_ADD") ? "disabled-btn" : ""}`}
                   onClick={() => {
-                    if (user?.permissions?.includes("CAN_ADD")) {
+                    if (user?.permissions?.includes("DEBT_ADD")) {
                       setIsRecurringModalOpen(true);
                     }
                   }}
-                  disabled={!user?.permissions?.includes("CAN_ADD")}
+                  disabled={!user?.permissions?.includes("DEBT_ADD")}
                 >
                   <FaHistory /> Despesa Recorrente
                 </button>

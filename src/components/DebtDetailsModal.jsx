@@ -143,13 +143,13 @@ const DebtDetailsModal = ({ debt, familyId, onClose, onUpdate }) => {
             </>
           ) : (
             <>
-              {user?.permissions?.includes("CAN_EDIT") ? (
+              {user?.permissions?.includes("DEBT_EDIT") ? (
                 <button className="btn primary" onClick={() => setIsEditing(true)}>Editar</button>
               ) : (
                 <button className="btn primary btn-disabled" disabled>Editar</button>
               )}
 
-              {user?.permissions?.includes("CAN_DELETE") ? (
+              {user?.permissions?.includes("DEBT_DELETE") ? (
                 <button className="btn danger" onClick={() => setShowConfirmDelete(true)}>🗑️ Excluir</button>
               ) : (
                 <button className="btn danger btn-disabled" disabled>🗑️ Excluir</button>
