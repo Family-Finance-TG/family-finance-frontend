@@ -70,14 +70,14 @@ const Sidebar = () => {
 
           <li
             className={`${
-              !user?.familyId || !user?.permissions?.includes("CAN_INVITE") ? "disabled" : ""
+              !user?.familyId || !user?.permissions?.includes("MEMBER_INVITE") ? "disabled" : ""
             } ${location.pathname === "/invites" ? "active" : ""}`}
             onClick={() => {
               if (!user?.familyId) {
                 alert("Você não está vinculado a uma família.");
                 return;
               }
-              if (!user?.permissions?.includes("CAN_INVITE")) {
+              if (!user?.permissions?.includes("MEMBER_INVITE")) {
                 alert("Você não tem permissão para convidar membros.");
                 return;
               }
@@ -115,9 +115,9 @@ const Sidebar = () => {
         
 
         <li
-          className={`${!user?.familyId || !user?.permissions?.includes("ADMIN") ? "disabled" : ""} ${location.pathname === "/permissions" ? "active" : ""}`}
+          className={`${!user?.familyId || !user?.permissions?.includes("PERMISSION_MANAGE") ? "disabled" : ""} ${location.pathname === "/permissions" ? "active" : ""}`}
           onClick={() => {
-            if (!user?.familyId || !user?.permissions?.includes("ADMIN")) {
+            if (!user?.familyId || !user?.permissions?.includes("PERMISSION_MANAGE")) {
               alert("Você não tem permissão para acessar.");
               return;
             }

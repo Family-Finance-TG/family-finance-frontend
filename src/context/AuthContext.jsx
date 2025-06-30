@@ -15,10 +15,8 @@ export const AuthProvider = ({ children }) => {
         console.warn("⚠ Usuário não pertence a nenhuma família.");
         return;
       }
-      console.log("🔍 Buscando família do usuário...");
       const familyData = await getFamilyById(familyId);
       if (familyData) {
-        console.log("✅ Família encontrada:", familyData);
         setFamily(familyData);
       }
     } catch (error) {

@@ -22,7 +22,6 @@ const LoginPage = () => {
 
     try {
       const response = await login(accessName, password);
-      console.log("✅ Login bem-sucedido:", response);
 
       if (response && response.user) {
         if (response.user.id) {

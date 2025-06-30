@@ -4,11 +4,12 @@ import { getFamilyWithMembers, updateMemberPermissions, getUserById } from "../s
 import "../styles/PermissionsPage.css";
 
 const permissionList = [
-  { key: "canAdd", label: "Adicionar Lançamentos" },
-  { key: "canEdit", label: "Editar Lançamentos" },
-  { key: "canDelete", label: "Excluir Lançamentos" },
-  { key: "canInvite", label: "Convidar Membros" },
-  { key: "canRemove", label: "Expulsar Membros" },
+  { key: "PERMISSION_MANAGE", label: "Gerenciar Permissões" },
+  { key: "DEBT_ADD", label: "Adicionar débitos" },
+  { key: "DEBT_EDIT", label: "Editar débitos" },
+  { key: "DEBT_DELETE", label: "Excluir débitos" },
+  { key: "MEMBER_INVITE", label: "Convidar Membros" },
+  { key: "MEMBER_REMOVE", label: "Expulsar Membros" },
 ];
 
 const PermissionsPage = () => {

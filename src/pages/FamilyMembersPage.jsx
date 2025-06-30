@@ -45,7 +45,7 @@ const FamilyMembersPage = () => {
     }
   };
 
-  const hasRemovePermission = currentUser?.permissions?.includes("CAN_REMOVE");
+  const hasRemovePermission = currentUser?.permissions?.includes("MEMBER_REMOVE");
 
   return (
     <div className="dashboard-container">
