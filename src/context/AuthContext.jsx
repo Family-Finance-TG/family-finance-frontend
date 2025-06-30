@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }) => {
   const fetchFamilyData = async (familyId) => {
     try {
       if (!familyId) {
-        console.warn("⚠ Usuário não pertence a nenhuma família.");
         return;
       }
       const familyData = await getFamilyById(familyId);
@@ -20,7 +19,6 @@ export const AuthProvider = ({ children }) => {
         setFamily(familyData);
       }
     } catch (error) {
-      console.error("❌ Erro ao buscar família:", error);
     }
   };
 
@@ -35,7 +33,6 @@ export const AuthProvider = ({ children }) => {
 
         const userId = response.user?.id;
         if (!userId) {
-          console.error("⚠ Nenhum userId encontrado.");
           return { success: false, error: "Usuário não encontrado." };
         }
 
@@ -48,10 +45,8 @@ export const AuthProvider = ({ children }) => {
         return { success: true, user: response.user };
       }
 
-      console.error("⚠ Login falhou: Estrutura inesperada da resposta.");
       return { success: false, error: "Falha ao fazer login." };
     } catch (error) {
-      console.error("❌ Erro no login:", error);
       return { success: false, error: "Erro ao autenticar. Tente novamente." };
     }
   };
@@ -79,12 +74,10 @@ export const AuthProvider = ({ children }) => {
               setUser(userData);
               fetchFamilyData(userData.familyId);
             } else {
-              console.error("⚠ Erro ao recuperar os dados do usuário.");
               logout();
             }
           })
           .catch(() => {
-            console.error("⚠ Erro ao recuperar os dados do usuário.");
             logout();
           });
       }

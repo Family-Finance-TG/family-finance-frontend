@@ -14,9 +14,18 @@ const ReceivedInvites = () => {
     try {
       setLoading(true);
       const data = await getUserInvites(user.id); // ✅ import corrigido
-      setInvites(data);
+      setInvites(
+        data.sort((a, b) => {
+          // Prioriza status PENDING
+          if (a.status.value === "PENDING" && b.status.value !== "PENDING") return -1;
+          if (a.status.value !== "PENDING" && b.status.value === "PENDING") return 1;
+
+          // Se os dois têm o mesmo status, ordena por data (mais recente primeiro)
+          return new Date(b.family_invite_created_at) - new Date(a.family_invite_created_at);
+        })
+      );
+
     } catch (err) {
-      console.error("Erro ao carregar convites recebidos:", err);
     } finally {
       setLoading(false);
     }
@@ -32,8 +41,7 @@ const ReceivedInvites = () => {
       await loadReceivedInvites();
       window.location.reload();
     } catch (err) {
-      console.error("Erro ao aceitar convite:", err);
-    }
+  }
   };
 
   const handleReject = async (inviteId) => {
@@ -41,7 +49,6 @@ const ReceivedInvites = () => {
       await rejectInvite(user.id, inviteId);
       await loadReceivedInvites();
     } catch (err) {
-      console.error("Erro ao rejeitar convite:", err);
     }
   };
 

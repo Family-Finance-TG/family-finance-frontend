@@ -32,9 +32,21 @@ const InviteManager = () => {
         })
       );
 
-      setInvites(detailedInvites);
+      setInvites(
+        detailedInvites.sort((a, b) => {
+          const isAPending = a.status?.value === "PENDING" ? 1 : 0;
+          const isBPending = b.status?.value === "PENDING" ? 1 : 0;
+
+          if (isAPending !== isBPending) return isBPending - isAPending;
+
+          const dateA = new Date(a.createdAt || 0);
+          const dateB = new Date(b.createdAt || 0);
+          return dateB - dateA;
+        })
+      );
+
+
     } catch (err) {
-      console.error("Erro ao carregar convites:", err);
     } finally {
       setLoading(false);
     }
@@ -51,7 +63,6 @@ const InviteManager = () => {
       setInviteCode("");
       await loadInvites();
     } catch (err) {
-      console.error("Erro ao criar convite:", err);
       setError("Código inválido ou usuário não encontrado.");
     }
   };
@@ -61,7 +72,6 @@ const InviteManager = () => {
       await cancelInvite(user.familyId, inviteId);
       await loadInvites();
     } catch (err) {
-      console.error("Erro ao cancelar convite:", err);
     }
   };
 
